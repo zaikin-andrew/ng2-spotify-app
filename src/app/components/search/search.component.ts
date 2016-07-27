@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
-import {SpotifyService} from '../../services/spotify.service';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Control } from '@angular/common';
+import { SpotifyService } from '../../services/spotify.service';
 import { Artist } from '../../shared';
-import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/filter';
 
 
 @Component({
@@ -14,20 +16,15 @@ import 'rxjs/add/operator/map';
 })
 export class SearchComponent {
   list: Array<Artist>;
-  searchStr: string;
+  searchCtrl: Control = new Control();
   constructor(private spotyfiAPI: SpotifyService) {
-  }
-
-  doSearch() {
-    if (!this.searchStr) {
-      this.list = [];
-      return false;
-    }
-    this.spotyfiAPI.searchMusic(this.searchStr)
+    this.searchCtrl.valueChanges
+      .debounceTime(300)
+      .filter(str => !!str)
+      .flatMap(str => this.spotyfiAPI.searchMusic(str))
       .subscribe(res => {
         //noinspection TypeScriptUnresolvedVariable
         this.list = res.artists.items;
-      });
+    });
   }
-
 }

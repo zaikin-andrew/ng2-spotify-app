@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
 import {SpotifyService} from '../../services';
 import {Artist, Album} from '../../shared';
 
@@ -7,7 +7,8 @@ import {Artist, Album} from '../../shared';
   moduleId: module.id,
   selector: 'app-artist',
   templateUrl: 'artist.component.html',
-  styleUrls: ['artist.component.css']
+  styleUrls: ['artist.component.css'],
+  directives: [ROUTER_DIRECTIVES]
 })
 export class ArtistComponent {
   artist: Array<Artist>;

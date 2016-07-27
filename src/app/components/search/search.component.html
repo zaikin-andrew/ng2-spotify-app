@@ -1,9 +1,9 @@
 <h1>Need Music?</h1>
-<p class="lead">Use this app to browse new realises and find your favorite songs</p>
+<p class="lead">Use this app to browse new releases and find your favorite songs</p>
 <form>
   <div class="form-group">
     <input class="form-control" type="text" placeholder="Search Music..."
-           [(ngModel)]="searchStr" (keyup)="doSearch()" >
+           [ngFormControl]="searchCtrl">
   </div>
 </form>
 <div *ngIf="list" class="artists-list">

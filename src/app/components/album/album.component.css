@@ -1,0 +1,21 @@
+.album-thumb {
+  max-width: 100%;
+}
+.track {
+  padding-right: 30px;
+  background-color: rgba(245, 245, 245, 0.2);
+  border-color: rgba(245, 245, 245, 0.4);
+}
+.album-tracks .list-group {
+  border-color: rgba(245, 245, 245, 0.4);
+}
+.play-link {
+  position: absolute;
+  display: block;
+  top: calc(50% - 10px);
+  right: 10px;
+  cursor: pointer;
+}
+.play-btn {
+  width: 20px;
+}
