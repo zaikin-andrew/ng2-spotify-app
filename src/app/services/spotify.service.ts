@@ -5,15 +5,24 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SpotifyService {
-  private searchUrl: string;
+  private spotifyUrl: string = `https://api.spotify.com/v1/`;
   constructor(private http: Http) {
 
   }
-
-  searchMusic(str, type = 'artist') {
-    this.searchUrl = `https://api.spotify.com/v1/search?query=${str}&offset=0&limit=20&type=${type}&market=US`;
-    return this.http.get(this.searchUrl)
+  apiRequest(url: string) {
+    return this.http.get(url)
       .map(res => res.json());
   }
-
+  searchMusic(str, type = 'artist') {
+    return this.apiRequest(`${this.spotifyUrl}search?query=${str}&offset=0&limit=20&type=${type}&market=US`);
+  }
+  getArtist(id: string) {
+    return this.apiRequest(`${this.spotifyUrl}artists/${id}`);
+  }
+  getAlbums(artistId: string) {
+    return this.apiRequest(`${this.spotifyUrl}artists/${artistId}/albums`);
+  }
+  getAlbum(id: string) {
+    return this.apiRequest(`${this.spotifyUrl}albums/${id}`);
+  }
 }

@@ -6,3 +6,7 @@ body {
   background: black;
   color: white;
 }
+.well {
+  background: rgba(245, 245, 245, 0.4);
+  border-color: rgba(245, 245, 245, 0.4);
+}

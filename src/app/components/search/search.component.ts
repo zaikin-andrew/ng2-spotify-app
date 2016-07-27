@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ROUTER_DIRECTIVES} from '@angular/router';
 import {SpotifyService} from '../../services/spotify.service';
 import { Artist } from '../../shared';
 import 'rxjs/add/operator/map';
@@ -8,7 +9,8 @@ import 'rxjs/add/operator/map';
   moduleId: module.id,
   selector: 'app-search',
   templateUrl: 'search.component.html',
-  styleUrls: ['search.component.css']
+  styleUrls: ['search.component.css'],
+  directives: [ROUTER_DIRECTIVES]
 })
 export class SearchComponent {
   list: Array<Artist>;
@@ -25,8 +27,6 @@ export class SearchComponent {
       .subscribe(res => {
         //noinspection TypeScriptUnresolvedVariable
         this.list = res.artists.items;
-      }, err => {
-        console.log('1111111', err);
       });
   }
 
