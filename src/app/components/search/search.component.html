@@ -1,3 +1,25 @@
-<p class="search">
-  search works!
-</p>
+<h1>Need Music?</h1>
+<p class="lead">Use this app to browse new realises and find your favorite songs</p>
+<form>
+  <div class="form-group">
+    <input class="form-control" type="text" placeholder="Search Music..."
+           [(ngModel)]="searchStr" (keyup)="doSearch()" >
+  </div>
+</form>
+<div *ngIf="list" class="artists-list">
+  <div *ngFor="let artist of list">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search-res well">
+          <h4>
+            {{artist.name}}
+          </h4>
+          <div>
+            <strong>Genres: </strong>
+            <span *ngFor="let genre of artist.genres">{{genre}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
